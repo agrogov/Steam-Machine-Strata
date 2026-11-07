@@ -1,0 +1,36 @@
+{
+  "_note": "DRAFT, untested. The OP's 'Chat' config (RTX 5060 laptop, 8 GB VRAM, 32 GB RAM) adapted for the Steam Machine (8 GB VRAM, 32 GB RAM). Changes from the OP: 131K context instead of 262K (more headroom), vram-reserve 900 (OP recommends 900), no vision, lib_dirs removed (CUDA only), localhost only. Replace ... paths. Delete this _note key if Strata rejects unknown keys. Strata's AMD support for this GPU is unconfirmed: run 'strata launch --plan' first.",
+  "exe": ".../Strata/engine/strata",
+  "args": [
+    "--pack", ".../Strata-data/packs/gyro-gyro-s",
+    "--native", ".../Strata-data/models/gyro-Gyro-S/Qwen3.8-Flash-Next-Gyro-S-TQ1_0.gguf",
+    "--ple-gguf", ".../Strata-data/models/gyro-Gyro-S/Qwen3.8-Flash-Next-Gyro-S-TQ1_0.gguf",
+    "--expert-profile", ".../Strata/data/expert-profile.bin",
+    "--mmap-experts",
+    "--kv-resident", "20480",
+    "--resident-budget-gib", "64",
+    "--adapt-async", "1",
+    "--expert-cache", "auto",
+    "--prefill", "auto",
+    "--spec", "4",
+    "--max-context", "131072",
+    "--kv", "q4_0",
+    "--vram-reserve-mib", "900",
+    "--pcie-frac", "0.35",
+    "--spec-min-p", "0.70",
+    "--adapt-every", "1",
+    "--adapt-swaps", "160",
+    "--adapt-decay", "0.97"
+  ],
+  "env": {
+    "STRATA_RESIDENT_HEADROOM_GIB": "4",
+    "STRATA_PREFILL_CPU_SHARE": "0"
+  },
+  "sampling": { "temperature": 1.0, "top_p": 0.95, "top_k": 20, "min_p": 0.05 },
+  "model_name": "qwen3.8-flash-next-gyro-gyro-s",
+  "log": ".../Strata/strata-gyro-gyro-s.log",
+  "port": 8080,
+  "gpu": 0,
+  "parallel": 1,
+  "allowed_hosts": ["127.0.0.1", "localhost"]
+}
